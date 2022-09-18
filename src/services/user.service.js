@@ -1,7 +1,13 @@
 import User from '../models/user.model.js'
 
 class UserService {
-  async login() {}
+  async login(username, password) {
+    try {
+      const user = await this.getUser(username)
+      if (password == user.password) return user
+      return 0
+    } catch (error) {}
+  }
 
   async register(username, password) {
     try {
@@ -17,7 +23,7 @@ class UserService {
 
   async getUser(username) {
     try {
-      return User.find({ username })
+      return User.findOne({ username })
     } catch (error) {
       console.log(error)
     }

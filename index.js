@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', router)
 
-const port = 3000
+const port = 3001
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`)

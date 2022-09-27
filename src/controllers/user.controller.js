@@ -9,7 +9,7 @@ class UserController {
   }
 
   async register(req, res) {
-    const { username, password } = req.body
+    const { username, password, passwordAgain } = req.body
     const exists = await userService.getUser(username)
     if (exists)
       return res.status(500).json({ message: 'username already used' })

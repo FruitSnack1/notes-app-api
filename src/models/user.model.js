@@ -16,5 +16,4 @@ const userSchema = new mongoose.Schema({
 })
 
 const User = mongoose.model('User', userSchema)
-console.log('created model')
 export default User

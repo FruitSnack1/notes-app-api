@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken'
 import crypto from 'crypto-js'
 
 export const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization
+  console.log(req.cookies)
+  const { token } = req.cookies
   if (token == null) return res.sendStatus(401)
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {

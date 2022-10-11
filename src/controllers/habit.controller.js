@@ -1,9 +1,15 @@
 import habitService from '../services/habit.service.js'
 
 class HabitController {
+  async getHabits(req, res) {
+    const { id } = req.user
+    const habits = await habitService.getHabits(id)
+    res.json(habits)
+  }
   async getHabit(req, res) {
     const { id } = req.user
-    const habits = await habitService.getHabit(id)
+    const habitId = req.params.id
+    const habits = await habitService.getHabit(id, habitId)
     res.json(habits)
   }
 
@@ -30,6 +36,13 @@ class HabitController {
   async restoreHabit(req, res) {
     const { id } = req.params
     const habit = await habitService.restoreHabit(id)
+    res.json(habit)
+  }
+
+  async writeEntry(req, res) {
+    const { id } = req.params
+    const { body } = req
+    const habit = await habitService.writeEntry(id, body)
     res.json(habit)
   }
 }

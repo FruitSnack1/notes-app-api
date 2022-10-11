@@ -22,6 +22,12 @@ const habitSchema = new mongoose.Schema({
     type: mongoose.ObjectId,
     ref: User,
   },
+  entries: [
+    {
+      status: Number,
+      date: Date,
+    },
+  ],
 })
 
 const Habit = mongoose.model('Habit', habitSchema)

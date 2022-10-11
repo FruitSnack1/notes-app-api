@@ -1,8 +1,12 @@
 import Habit from '../models/habit.model.js'
 
 class HabitService {
-  async getHabit(id) {
+  async getHabits(id) {
     return await Habit.find({ user: id })
+  }
+
+  async getHabit(id, habitId) {
+    return await Habit.findOne({ user: id, _id: habitId })
   }
 
   async createHabit(user, body) {
@@ -28,6 +32,14 @@ class HabitService {
       { $set: { deleted: false } },
       { new: true }
     )
+  }
+
+  async writeEntry(id, body) {
+    const habit = await Habit.findById(id)
+    let found = habit.entries.find((e) => e.date.toISOString() == body.date)
+    if (found) found.status = body.status
+    else habit.entries = [...habit.entries, body]
+    return habit.save()
   }
 }
 

@@ -41,6 +41,12 @@ class HabitService {
     else habit.entries = [...habit.entries, body]
     return habit.save()
   }
+
+  async writeFrequency(id, body) {
+    const habit = await Habit.findById(id)
+    habit.frequency[body.index] = body.value
+    return habit.save()
+  }
 }
 
 const habitService = new HabitService()

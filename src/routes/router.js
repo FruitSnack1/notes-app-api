@@ -17,5 +17,6 @@ router.put('/habits/:id', verifyToken, habitController.updateHabit)
 router.delete('/habits/:id', verifyToken, habitController.deleteHabit)
 router.put('/habits/restore/:id', verifyToken, habitController.restoreHabit)
 router.put('/habits/entry/:id', verifyToken, habitController.writeEntry)
+router.put('/habits/frequency/:id', verifyToken, habitController.writeFrequency)
 
 export default router

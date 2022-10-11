@@ -45,6 +45,13 @@ class HabitController {
     const habit = await habitService.writeEntry(id, body)
     res.json(habit)
   }
+
+  async writeFrequency(req, res) {
+    const { id } = req.params
+    const { body } = req
+    const habit = await habitService.writeFrequency(id, body)
+    res.json(habit)
+  }
 }
 
 const habitController = new HabitController()

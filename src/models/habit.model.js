@@ -7,8 +7,13 @@ const habitSchema = new mongoose.Schema({
     required: true,
   },
   frequency: {
-    type: [Boolean],
-    default: new Array(7).fill(false),
+    mo: Boolean,
+    tu: Boolean,
+    we: Boolean,
+    th: Boolean,
+    fr: Boolean,
+    sa: Boolean,
+    su: Boolean,
   },
   deleted: {
     type: Boolean,

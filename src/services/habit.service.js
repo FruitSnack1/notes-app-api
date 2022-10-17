@@ -15,20 +15,25 @@ class HabitService {
   }
 
   async updateHabit(id, body) {
-    return await Habit.findOneAndUpdate({ id }, { $set: body }, { new: true })
+    console.log('updating habit', id)
+    return await Habit.findOneAndUpdate(
+      { _id: id },
+      { $set: body },
+      { new: true }
+    )
   }
 
   async deleteHabit(id) {
     return await Habit.findOneAndUpdate(
-      { id },
-      { $set: { deleted: true } },
+      { _id: id },
+      { $set: body },
       { new: true }
     )
   }
 
   async restoreHabit(id) {
     return await Habit.findOneAndUpdate(
-      { id },
+      { _id: id },
       { $set: { deleted: false } },
       { new: true }
     )
@@ -43,9 +48,15 @@ class HabitService {
   }
 
   async writeFrequency(id, body) {
-    const habit = await Habit.findById(id)
-    habit.frequency[body.index] = body.value
-    return habit.save()
+    const key = Object.keys(body.frequency)[0]
+    return Habit.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          [`frequency.${key}`]: body.frequency[key],
+        },
+      }
+    )
   }
 }
 

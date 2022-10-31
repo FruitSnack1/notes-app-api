@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'https://notes-app-amber.vercel.app/'],
+    origin: ['http://localhost:3000', 'https://notes-app-amber.vercel.app'],
   })
 )
 app.use('/', router)

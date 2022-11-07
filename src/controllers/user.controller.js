@@ -10,7 +10,7 @@ class UserController {
         secure: true,
       })
       res.status(200).json(user)
-    } else res.status(500).json({ message: 'wrong password' })
+    } else res.status(401).json({ message: 'wrong password' })
   }
 
   async register(req, res) {

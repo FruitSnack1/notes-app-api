@@ -15,7 +15,6 @@ class HabitService {
   }
 
   async updateHabit(id, body) {
-    console.log('updating habit', id)
     return await Habit.findOneAndUpdate(
       { _id: id },
       { $set: body },
@@ -24,11 +23,7 @@ class HabitService {
   }
 
   async deleteHabit(id) {
-    return await Habit.findOneAndUpdate(
-      { _id: id },
-      { $set: body },
-      { new: true }
-    )
+    return await Habit.findByIdAndDelete({ _id: id })
   }
 
   async restoreHabit(id) {

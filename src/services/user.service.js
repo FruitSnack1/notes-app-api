@@ -33,6 +33,14 @@ class UserService {
       console.log(error)
     }
   }
+
+  async updateUser(id, body) {
+    try {
+      return User.findByIdAndUpdate(id, { $set: body }, { new: true })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 const userService = new UserService()

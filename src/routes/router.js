@@ -8,6 +8,7 @@ import { verifyToken } from '../utils/auth.js'
 //User
 router.post('/login', userController.login)
 router.post('/register', userController.register)
+router.put('/user', verifyToken, userController.updateUser)
 
 //Habit
 router.get('/habits', verifyToken, habitController.getHabits)

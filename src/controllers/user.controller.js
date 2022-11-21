@@ -21,6 +21,14 @@ class UserController {
     const user = await userService.register(username, password)
     res.json(user)
   }
+
+  async updateUser(req, res) {
+    const id = req.user.id
+    const { body } = req
+    console.log(body)
+    const user = await userService.updateUser(id, body)
+    res.json(user)
+  }
 }
 
 const userController = new UserController()
